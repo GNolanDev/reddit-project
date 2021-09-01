@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import topSubsReducer from "../features/content/topsubs/topSubsSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    topSubs: topSubsReducer,
   },
 });
