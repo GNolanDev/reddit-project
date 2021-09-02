@@ -1,11 +1,11 @@
 import Subreddit from "./subreddit/Subreddit";
-import TopSubsList from "./topsubs/topsubslist/TopSubsList";
+import TopSubsContainer from "./topsubs/TopSubsContainer";
 
 const Content = () => {
   return (
     <div className="content-container">
       <Subreddit />
-      <TopSubsList />
+      <TopSubsContainer />
     </div>
   );
 };

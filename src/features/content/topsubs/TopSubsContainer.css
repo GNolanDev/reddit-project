@@ -1,0 +1,11 @@
+.topsubslist-container {
+  border: 2px solid purple;
+  margin: 10px 20px;
+  padding: 6px;
+}
+
+.topsubslist-subtitle {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 4px 10px 10px;
+}

@@ -1,32 +1,32 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import TopSub from "../topsub/TopSub";
+import { getTopSubs, selectTopSubs } from "../topSubsSlice";
+import "./TopSubsList.css";
 
 const TopSubsList = () => {
-  const topsubs = [
-    {
-      id: "subs12345",
-      display_name: "funny",
-      url: "/r/funny/",
-      icon_img:
-        "https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png",
-    },
-  ]; // get from store by selector
+  const dispatch = useDispatch();
+  const topsubs = useSelector(selectTopSubs);
+
+  // populate store with today's subreddits when component first mounts
+  useEffect(() => {
+    dispatch(getTopSubs());
+  }, [dispatch]);
+
   return (
-    <div className="topsubsList">
-      <div className="topsubsTitle">Top subreddits today</div>
-      <ul>
-        {topsubs.map((sub) => {
-          return (
-            <li key={sub.id}>
-              <TopSub
-                url={sub.url}
-                icon_url={sub.icon_img}
-                name={sub.display_name}
-              />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className="topsubsList">
+      {topsubs.map((sub) => {
+        return (
+          <li key={sub.id}>
+            <TopSub
+              url={sub.url}
+              icon_url={sub.icon_img}
+              name={sub.display_name}
+            />
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
