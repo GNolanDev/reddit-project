@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
 import Post from "../post/Post";
-import { selectSubreddit, selectSubredditPosts } from "../subredditSlice";
+import {
+  selectSearchedSubredditPosts,
+  selectSubreddit,
+} from "../subredditSlice";
 
 const PostsList = () => {
-  const posts = useSelector(selectSubredditPosts);
+  const posts = useSelector(selectSearchedSubredditPosts);
   const { isLoading, error } = useSelector(selectSubreddit);
 
   if (isLoading) {

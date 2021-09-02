@@ -1,0 +1,25 @@
+.mainheader {
+  margin: 4px;
+  display: grid;
+  grid-template-columns: 2em 1fr;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 2px;
+}
+
+.searchBar button {
+  display: inline-flex;
+}
+
+.searchBar img {
+  height: 1em;
+  width: 1em;
+}
+
+#headerlogo img {
+  height: 1.5em;
+  width: 1.5em;
+}

@@ -56,6 +56,14 @@ export const {
 } = subredditSlice.actions;
 export default subredditSlice.reducer;
 export const selectSubredditPosts = (state) => state.subreddit.posts;
+export const selectSearchedSubredditPosts = (state) => {
+  if (state.subreddit.searchTerm === "") {
+    return state.subreddit.posts;
+  }
+  return state.subreddit.posts.filter((post) =>
+    post.title.toLowerCase().includes(state.subreddit.searchTerm)
+  );
+};
 export const selectCurrentSubredditURL = (state) => state.subreddit.selectedURL;
 export const selectCurrentSearchTerm = (state) => state.subreddit.searchTerm;
 export const selectSubreddit = (state) => state.subreddit;
