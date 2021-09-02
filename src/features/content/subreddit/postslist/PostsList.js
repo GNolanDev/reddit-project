@@ -1,9 +1,22 @@
 import { useSelector } from "react-redux";
 import Post from "../post/Post";
-import { selectSubredditPosts } from "../subredditSlice";
+import { selectSubreddit, selectSubredditPosts } from "../subredditSlice";
 
 const PostsList = () => {
   const posts = useSelector(selectSubredditPosts);
+  const { isLoading, error } = useSelector(selectSubreddit);
+
+  if (isLoading) {
+    return <div className="loadingDiv">fetching posts...</div>;
+  }
+
+  if (error) {
+    return <div className="errorDiv">Could not fetch posts!</div>;
+  }
+
+  if (posts.length < 1) {
+    return <div>No posts available</div>;
+  }
 
   return (
     <div className="postsList">

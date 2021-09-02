@@ -40,6 +40,7 @@ export const getTopSubs = () => async (dispatch) => {
 export const { startGettingTopSubs, getTopSubsSuccess, getTopSubsFailure } =
   topSubsSlice.actions;
 export default topSubsSlice.reducer;
+export const selectTopSubsObject = (state) => state.topSubs;
 export const selectTopSubs = (state) => state.topSubs.topSubs;
 export const selectCurrentSubName = (state) => {
   // use array of subreddits to get display name of selected subreddit

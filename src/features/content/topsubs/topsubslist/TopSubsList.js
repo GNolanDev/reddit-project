@@ -1,17 +1,34 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TopSub from "../topsub/TopSub";
-import { getTopSubs, selectTopSubs } from "../topSubsSlice";
+import {
+  getTopSubs,
+  selectTopSubs,
+  selectTopSubsObject,
+} from "../topSubsSlice";
 import "./TopSubsList.css";
 
 const TopSubsList = () => {
   const dispatch = useDispatch();
   const topsubs = useSelector(selectTopSubs);
+  const { isLoading, error } = useSelector(selectTopSubsObject);
 
   // populate store with today's subreddits when component first mounts
   useEffect(() => {
     dispatch(getTopSubs());
   }, [dispatch]);
+
+  if (isLoading) {
+    return <div className="loadingDiv">fetching subreddits...</div>;
+  }
+
+  if (error) {
+    return <div className="errorDiv">Could not fetch subreddits!</div>;
+  }
+
+  if (topsubs.length < 1) {
+    return <div>No subreddits available</div>;
+  }
 
   return (
     <ul className="topsubsList">
