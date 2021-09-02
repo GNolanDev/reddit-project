@@ -3,12 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentSubName, selectTopSubs } from "../topsubs/topSubsSlice";
 import PostsList from "./postslist/PostsList";
 import "./Subreddit.css";
-import {
-  getSubreddit,
-  selectCurrentSubredditURL,
-  selectSubredditPosts,
-  setSelectedSubreddit,
-} from "./subredditSlice";
+import { getSubreddit, setSelectedSubreddit } from "./subredditSlice";
 
 const Subreddit = () => {
   const dispatch = useDispatch();

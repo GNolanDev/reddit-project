@@ -1,26 +1,22 @@
-// fetchTopSubs - get top subreddits and extract relevant data before returning
-const fetchTopSubs = () => {
-  // mock return for development
-  return [
-    {
-      id: "subs12345",
-      display_name: "funny",
-      url: "/r/funny/",
-      icon_img:
-        "https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png",
-    },
-    {
-      id: "subs123456",
-      display_name: "funny2",
-      url: "/r/funny2/",
-      icon_img:
-        "https://a.thumbs.redditmedia.com/kIpBoUR8zJLMQlF8azhN-kSBsjVUidHjvZNLuHDONm8.png",
-    },
-  ];
+import paths from "../constants/paths";
+const { base_url } = paths;
+
+// fetchTopSubs - get top 20 subreddits and extract relevant data before returning
+const fetchTopSubs = async () => {
+  const response = await fetch(`${base_url}/subreddits.json`);
+  const json = await response.json();
+  const subsFullDetail = json.data.children
+    .map((child) => child.data)
+    .slice(0, 20);
+  return subsFullDetail.map((sub) => {
+    // only return necessary data to simplify objects
+    const { id, display_name, url, icon_img } = sub;
+    return { id, display_name, url, icon_img };
+  });
 };
 
 // fetchPosts - get posts from the selected subreddit
-const fetchPosts = () => {
+const fetchPosts = async () => {
   // mock return for development
   return [
     {

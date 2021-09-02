@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
 import { fetchTopSubs } from "../../../api/redditApi";
-import { selectCurrentSubredditURL } from "../subreddit/subredditSlice";
 
 const initialState = {
   topSubs: [],
