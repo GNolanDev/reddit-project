@@ -6,8 +6,7 @@ const initialState = {
   error: false,
   isLoading: false,
   searchTerm: "",
-  //selectedURL: "",
-  selectedURL: "/r/funny/",
+  selectedURL: "",
 };
 
 const subredditSlice = createSlice({

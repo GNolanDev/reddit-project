@@ -1,17 +1,24 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentSubName } from "../topsubs/topSubsSlice";
+import { selectCurrentSubName, selectTopSubs } from "../topsubs/topSubsSlice";
 import PostsList from "./postslist/PostsList";
 import "./Subreddit.css";
 import {
   getSubreddit,
   selectCurrentSubredditURL,
   selectSubredditPosts,
+  setSelectedSubreddit,
 } from "./subredditSlice";
 
 const Subreddit = () => {
   const dispatch = useDispatch();
+  const firstSubredditFromList = useSelector(selectTopSubs)[0] || "";
   const currentSubredditName = useSelector(selectCurrentSubName);
+
+  //set current subreddit as first from today's list on first mount
+  useEffect(() => {
+    dispatch(setSelectedSubreddit(firstSubredditFromList.url));
+  }, [dispatch, firstSubredditFromList]);
 
   useEffect(() => {
     dispatch(getSubreddit());
