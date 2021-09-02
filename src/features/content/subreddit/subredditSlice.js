@@ -35,13 +35,15 @@ const subredditSlice = createSlice({
   },
 });
 
-export const getSubreddit = () => async (dispatch) => {
-  try {
-    dispatch(startGettingSubreddit());
-    const posts = await fetchPosts();
-    dispatch(getSubredditSuccess(posts));
-  } catch {
-    dispatch(getSubredditFailure());
+export const getSubreddit = (sub_url) => async (dispatch) => {
+  if (sub_url && sub_url.startsWith("/r/")) {
+    try {
+      dispatch(startGettingSubreddit());
+      const posts = await fetchPosts(sub_url);
+      dispatch(getSubredditSuccess(posts));
+    } catch {
+      dispatch(getSubredditFailure());
+    }
   }
 };
 
