@@ -1,14 +1,10 @@
+import { useSelector } from "react-redux";
 import Post from "../post/Post";
+import { selectSubredditPosts } from "../subredditSlice";
 
 const PostsList = () => {
-  const posts = [
-    {
-      author: "testauthorname",
-      title: "test title text",
-      url: "https://i.redd.it/zwqg7xqu4uk71.jpg",
-      id: 12345,
-    },
-  ]; // get from store by selector
+  const posts = useSelector(selectSubredditPosts);
+
   return (
     <div className="postsList">
       {posts.map((post) => {

@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 import { fetchTopSubs } from "../../../api/redditApi";
+import { selectCurrentSubredditURL } from "../subreddit/subredditSlice";
 
 const initialState = {
   topSubs: [],
@@ -20,7 +22,7 @@ const topSubsSlice = createSlice({
       state.error = false;
       state.topSubs = action.payload;
     },
-    getTopSubsFailure(state, action) {
+    getTopSubsFailure(state) {
       state.isLoading = false;
       state.error = true;
     },
@@ -41,3 +43,13 @@ export const { startGettingTopSubs, getTopSubsSuccess, getTopSubsFailure } =
   topSubsSlice.actions;
 export default topSubsSlice.reducer;
 export const selectTopSubs = (state) => state.topSubs.topSubs;
+export const selectCurrentSubName = (state) => {
+  // use array of subreddits to get display name of selected subreddit
+  const currentSubURL = state.subreddit.selectedURL;
+  const currentSub = state.topSubs.topSubs.find(
+    (sub) => sub.url === currentSubURL
+  );
+  return currentSub && "display_name" in currentSub
+    ? currentSub.display_name
+    : "Not found";
+};
