@@ -1,15 +1,22 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
+import React from "react";
+import { render, fireEvent, screen } from "./test-utils/test-utils";
+import App from "./App";
+// also requires mocking of fetch, use msw
+import { rest } from "msw";
+import { setupServer } from "msw/node";
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+// E2E tests
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+describe("On loading the page", async () => {
+  it("should display a text input for searching", () => {
+    render(<App />);
+    expect(
+      screen.getByRole("textbox", { name: /search/i })
+    ).toBeInTheDocument();
+  });
+  it("should display the top subreddit of the day", async () => {
+    render(<App />);
+    const textElement = await screen.getByText(/ffxiv/);
+    expect(textElement).toBeInTheDocument();
+  });
 });

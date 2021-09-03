@@ -32,6 +32,7 @@ const Header = () => {
       </div>
       <form className="searchBar">
         <input
+          aria-label="Search"
           type="text"
           placeholder="Search posts"
           onChange={handleChange}
