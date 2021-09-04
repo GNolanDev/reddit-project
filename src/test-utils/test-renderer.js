@@ -1,3 +1,4 @@
+// boilerplate for setting up store provider for testing
 import React from "react";
 import { render as rtLibRender } from "@testing-library/react";
 import { configureStore } from "@reduxjs/toolkit";
