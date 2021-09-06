@@ -1,25 +1,25 @@
 // mock data for use in api testing
-const topsubs = {
-  0: {
+const topsubs = [
+  {
     data: {
       id: "testid0001",
       display_name: "testdisplayname1",
-      url: "testurl0001",
+      url: "/r/testurl0001",
       icon_img: "testimgurl0001",
     },
   },
-  1: {
+  {
     data: {
       id: "testid0002",
       display_name: "testdisplayname2",
-      url: "testurl0002",
+      url: "/r/testurl0002",
       icon_img: "testimgurl0002",
     },
   },
-};
+];
 
-const posts = {
-  0: {
+const posts1 = [
+  {
     data: {
       id: "postid0001",
       author: "authorname0001",
@@ -27,7 +27,7 @@ const posts = {
       title: "title0001",
     },
   },
-  1: {
+  {
     data: {
       id: "postid0002",
       author: "authorname0002",
@@ -35,6 +35,6 @@ const posts = {
       title: "title0002",
     },
   },
-};
+];
 
-export default { topsubs, posts };
+export default { topsubs, posts1 };

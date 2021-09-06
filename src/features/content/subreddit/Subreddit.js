@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentSubName, selectTopSubs } from "../topsubs/topSubsSlice";
+import { selectTopSubs } from "../topsubs/topSubsSlice";
 import PostsList from "./postslist/PostsList";
 import "./Subreddit.css";
 import {
@@ -36,7 +36,7 @@ const Subreddit = () => {
   return (
     <div className="subreddit-container">
       <div className="selected-subtitle">
-        Showing posts from: {currentSubredditName}
+        Showing posts from: {currentSubredditName()}
       </div>
       <PostsList />
     </div>

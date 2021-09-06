@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import searchicon from "../../assets/magnifying-glass.png";
 import redditicon from "../../assets/reddit.png";
@@ -17,10 +17,6 @@ const Header = () => {
     e.preventDefault();
     dispatch(setSearchTerm(tempSearchTerm));
   };
-
-  // useEffect(() => {
-
-  // })
 
   // attribute: <div>Icons made by <a href="" title="Chanut">Chanut</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
   // attribute: <div>Icons made by <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

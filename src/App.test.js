@@ -53,6 +53,15 @@ describe("On loading the page", () => {
     );
     expect(textElement).toBeInTheDocument();
   });
+  it("should display a post from the top subreddit", async () => {
+    render(<App />);
+    await wait(1000);
+    const textElement = await screen.getByText(
+      `${testdata.posts1[0].data.title}`
+    );
+    expect(textElement).toBeInTheDocument();
+  });
+
   describe("When the subreddits fetch api has a problem", () => {
     it("should display an error message if 404 returned", async () => {
       server.use(
@@ -84,21 +93,19 @@ describe("On loading the page", () => {
       expect(textElement).toBeInTheDocument();
     });
   });
-  // tests for visible posts?
 });
 
-// describe("On clicking the 2nd subreddit", () => {
-//   it("should display the 2nd subreddit as the main content", async () => {
-//     // click 2nd subreddit here
-//     await new Promise((resolve) => {
-//       setTimeout(resolve, 1000);
-//     });
-//     fireEvent.click(screen.getByText(/ffxiv/));
-//     await new Promise((resolve) => {
-//       setTimeout(resolve, 1000);
-//     });
-//     const textElement = await screen.getByText(/Showing posts from: ffxiv/);
-//     expect(textElement).toBeInTheDocument();
-//   });
-//   // tests for visible posts?
-// });
+describe("On clicking the 2nd subreddit", () => {
+  it("should display the 2nd subreddit as the main content", async () => {
+    render(<App />);
+    // click 2nd subreddit here
+    await wait(1000);
+    fireEvent.click(screen.getByText(testdata.topsubs[1].data.display_name));
+    await wait(1000);
+    const titleElement = await screen.getByText(
+      `Showing posts from: ${testdata.topsubs[1].data.display_name}`
+    );
+    expect(titleElement).toBeInTheDocument();
+  });
+  // tests for visible posts?
+});

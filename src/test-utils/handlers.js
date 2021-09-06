@@ -11,9 +11,18 @@ export const handlers = [
       ctx.status(200),
       ctx.json({
         data: {
-          children: {
-            ...testdata.topsubs,
-          },
+          children: [...testdata.topsubs],
+        },
+      })
+    );
+  }),
+  // handle GET request to reddit for fetching posts from 1st subreddit
+  rest.get("*", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        data: {
+          children: [...testdata.posts1],
         },
       })
     );

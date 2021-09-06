@@ -11,7 +11,7 @@ const fetchTopSubs = async () => {
   //throw new Error("Failed to fetch subreddits");
   const response = await fetch(`${base_url}/subreddits.json`);
   const json = await response.json();
-  const subsFullDetail = Object.values(json.data.children)
+  const subsFullDetail = json.data.children
     .map((child) => child.data)
     .slice(0, 20);
   return subsFullDetail.map((sub) => {
