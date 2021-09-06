@@ -17,14 +17,31 @@ export const handlers = [
     );
   }),
   // handle GET request to reddit for fetching posts from 1st subreddit
-  rest.get("*", (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        data: {
-          children: [...testdata.posts1],
-        },
-      })
-    );
-  }),
+  //rest.get(/https:\/\/www.reddit.com\/r\/testurl000/, (req, res, ctx) => {
+  rest.get(
+    new RegExp(`${base_url}${testdata.topsubs[0].data.url}`),
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          data: {
+            children: [...testdata.posts1],
+          },
+        })
+      );
+    }
+  ),
+  rest.get(
+    new RegExp(`${base_url}${testdata.topsubs[1].data.url}`),
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          data: {
+            children: [...testdata.posts2],
+          },
+        })
+      );
+    }
+  ),
 ];

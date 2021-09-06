@@ -37,4 +37,23 @@ const posts1 = [
   },
 ];
 
-export default { topsubs, posts1 };
+const posts2 = [
+  {
+    data: {
+      id: "postid0003",
+      author: "authorname0003",
+      url: "posturl0003",
+      title: "title0003",
+    },
+  },
+  {
+    data: {
+      id: "postid0004",
+      author: "authorname0004",
+      url: "posturl0004",
+      title: "title0004",
+    },
+  },
+];
+
+export default { topsubs, posts1, posts2 };

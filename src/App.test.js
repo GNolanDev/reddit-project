@@ -39,7 +39,7 @@ describe("On loading the page", () => {
   });
   it("should display the second subreddit of the day in list", async () => {
     render(<App />);
-    await wait(1000);
+    await wait(200);
     const textElement = await screen.getByText(
       testdata.topsubs[1].data.display_name
     );
@@ -47,7 +47,7 @@ describe("On loading the page", () => {
   });
   it("should display the top subreddit of the day as the main content", async () => {
     render(<App />);
-    await wait(1000);
+    await wait(200);
     const textElement = await screen.getByText(
       `Showing posts from: ${testdata.topsubs[0].data.display_name}`
     );
@@ -55,7 +55,7 @@ describe("On loading the page", () => {
   });
   it("should display a post from the top subreddit", async () => {
     render(<App />);
-    await wait(1000);
+    await wait(200);
     const textElement = await screen.getByText(
       `${testdata.posts1[0].data.title}`
     );
@@ -73,7 +73,7 @@ describe("On loading the page", () => {
         })
       );
       render(<App />);
-      await wait(1000);
+      await wait(200);
       const textElement = await screen.getByText(/Could not fetch subreddits/i);
       expect(textElement).toBeInTheDocument();
     });
@@ -88,7 +88,7 @@ describe("On loading the page", () => {
         })
       );
       render(<App />);
-      await wait(1000);
+      await wait(500);
       const textElement = await screen.getByText(/fetching subreddits/i);
       expect(textElement).toBeInTheDocument();
     });
@@ -96,16 +96,20 @@ describe("On loading the page", () => {
 });
 
 describe("On clicking the 2nd subreddit", () => {
-  it("should display the 2nd subreddit as the main content", async () => {
+  it("should display the 2nd subreddit title and posts", async () => {
     render(<App />);
     // click 2nd subreddit here
-    await wait(1000);
+    await wait(200);
     fireEvent.click(screen.getByText(testdata.topsubs[1].data.display_name));
-    await wait(1000);
+    await wait(200);
     const titleElement = await screen.getByText(
       `Showing posts from: ${testdata.topsubs[1].data.display_name}`
     );
+    const postElement = await screen.getByText(
+      `${testdata.posts2[0].data.title}`
+    );
     expect(titleElement).toBeInTheDocument();
+    expect(postElement).toBeInTheDocument();
   });
   // tests for visible posts?
 });
