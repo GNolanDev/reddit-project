@@ -1,0 +1,7 @@
+@media only screen and (min-width: 600px) {
+  .content-container {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    max-width: calc(100vw - 32px);
+  }
+}

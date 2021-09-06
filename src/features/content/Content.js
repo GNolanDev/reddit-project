@@ -1,5 +1,6 @@
 import Subreddit from "./subreddit/Subreddit";
 import TopSubsContainer from "./topsubs/TopSubsContainer";
+import "./Content.css";
 
 const Content = () => {
   return (

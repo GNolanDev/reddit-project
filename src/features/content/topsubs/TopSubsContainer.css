@@ -1,11 +1,16 @@
 .topsubslist-container {
   border: 2px solid purple;
-  margin: 10px 20px;
-  padding: 6px;
+  margin: 10px;
 }
 
 .topsubslist-subtitle {
   font-weight: bold;
   font-size: 1.1rem;
   margin: 4px 10px 10px;
+}
+
+@media only screen and (min-width: 600px) {
+  .topsubslist-container {
+    width: 300px;
+  }
 }
