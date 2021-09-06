@@ -42,13 +42,3 @@ export const { startGettingTopSubs, getTopSubsSuccess, getTopSubsFailure } =
 export default topSubsSlice.reducer;
 export const selectTopSubsObject = (state) => state.topSubs;
 export const selectTopSubs = (state) => state.topSubs.topSubs;
-export const selectCurrentSubName = (state) => {
-  // use array of subreddits to get display name of selected subreddit
-  const currentSubURL = state.subreddit.selectedURL;
-  const currentSub = state.topSubs.topSubs.find(
-    (sub) => sub.url === currentSubURL
-  );
-  return currentSub && "display_name" in currentSub
-    ? currentSub.display_name
-    : "Not found";
-};

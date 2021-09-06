@@ -12,8 +12,16 @@ import {
 const Subreddit = () => {
   const dispatch = useDispatch();
   const firstSubredditFromList = useSelector(selectTopSubs)[0] || "";
-  const currentSubredditName = useSelector(selectCurrentSubName);
   const currentSubredditURL = useSelector(selectCurrentSubredditURL);
+  const topSubs = useSelector(selectTopSubs);
+
+  const currentSubredditName = () => {
+    // use array of subreddits to get display name of selected subreddit
+    const currentSub = topSubs.find((sub) => sub.url === currentSubredditURL);
+    return currentSub && "display_name" in currentSub
+      ? currentSub.display_name
+      : "Not found";
+  };
 
   //set current subreddit as first from today's list on first mount
   useEffect(() => {

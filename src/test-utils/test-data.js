@@ -18,4 +18,23 @@ const topsubs = {
   },
 };
 
-export default { topsubs };
+const posts = {
+  0: {
+    data: {
+      id: "postid0001",
+      author: "authorname0001",
+      url: "posturl0001",
+      title: "title0001",
+    },
+  },
+  1: {
+    data: {
+      id: "postid0002",
+      author: "authorname0002",
+      url: "posturl0002",
+      title: "title0002",
+    },
+  },
+};
+
+export default { topsubs, posts };
