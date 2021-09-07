@@ -8,6 +8,15 @@ const Post = (props) => {
         <img src={props.url} alt="" />
       </div>
       <div className="postAuthor">{props.author}</div>
+      <div className="num-comments">{props.num_comments}</div>
+      <button className="toggle-comments">
+        <img
+          src="../../../../assets/comment.png"
+          alt=""
+          aria-role="toggle comments"
+        />
+      </button>
+      <Comments showComments={props.showComments} comments={props.comments} />
     </div>
   );
 };
