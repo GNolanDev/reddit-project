@@ -14,7 +14,7 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 beforeAll(() => {
   server.listen();
 });
-// render the App within a Provider at teh start of each test
+// render app seperately so msw can have overriding request handlers added first
 beforeEach(() => {
   // render(<App />);
 });
@@ -95,10 +95,22 @@ describe("On loading the page", () => {
   });
 });
 
+describe("On clicking an expand comment button", () => {
+  it("should display the comments for that post", async () => {
+    render(<App />);
+    await wait(200);
+    fireEvent.click(
+      screen.getAllByRole("button", { name: "toggle-comments" })[0]
+    );
+    await wait(200);
+    const commentElement = await screen.getByText(/test comment 0001/i);
+    expect(commentElement).toBeInTheDocument();
+  });
+});
+
 describe("On clicking the 2nd subreddit", () => {
   it("should display the 2nd subreddit title and posts", async () => {
     render(<App />);
-    // click 2nd subreddit here
     await wait(200);
     fireEvent.click(screen.getByText(testdata.topsubs[1].data.display_name));
     await wait(200);
@@ -111,5 +123,4 @@ describe("On clicking the 2nd subreddit", () => {
     expect(titleElement).toBeInTheDocument();
     expect(postElement).toBeInTheDocument();
   });
-  // tests for visible posts?
 });

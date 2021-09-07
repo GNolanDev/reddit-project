@@ -25,6 +25,7 @@ const posts1 = [
       author: "authorname0001",
       url: "posturl0001",
       title: "title0001",
+      permalink: "/r/testurl0001/comments/abcdef/foo",
     },
   },
   {
@@ -33,6 +34,7 @@ const posts1 = [
       author: "authorname0002",
       url: "posturl0002",
       title: "title0002",
+      permalink: "/r/testurl0001/comments/abcdef/bar",
     },
   },
 ];
@@ -44,6 +46,7 @@ const posts2 = [
       author: "authorname0003",
       url: "posturl0003",
       title: "title0003",
+      permalink: "/r/testurl0002/comments/abcdef/foo",
     },
   },
   {
@@ -52,8 +55,28 @@ const posts2 = [
       author: "authorname0004",
       url: "posturl0004",
       title: "title0004",
+      permalink: "/r/testurl0002/comments/abcdef/bar",
     },
   },
 ];
 
-export default { topsubs, posts1, posts2 };
+const comments1 = [
+  {
+    data: {
+      id: "commentid0001",
+      author: "commentauthor0001",
+      created_utc: 1631000000,
+      body: "Test Comment Body String 0001",
+    },
+  },
+  {
+    data: {
+      id: "commentid0002",
+      author: "commentauthor0002",
+      created_utc: 1631001000,
+      body: "Test Comment Body String 0002",
+    },
+  },
+];
+
+export default { topsubs, posts1, posts2, comments1 };
