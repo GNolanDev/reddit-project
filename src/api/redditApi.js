@@ -35,9 +35,22 @@ const fetchPosts = async (sub_url) => {
     .map((child) => child.data)
     .slice(0, 50);
   return postsFullDetail.map((post) => {
-    const { author, title, url, id, num_comments } = post;
-    return { author, title, url, id, num_comments };
+    const { author, title, url, id, num_comments, permalink } = post;
+    return { author, title, url, id, num_comments, permalink };
   });
 };
 
-export { fetchTopSubs, fetchPosts };
+// fetch first 100 comments on the post
+const fetchComments = async (permalink) => {
+  const response = await fetch(`${base_url}${permalink}.json`);
+  const json = await response.json();
+  const commentsFullDetail = json[1].data.children
+    .map((child) => child.data)
+    .slice(0, 100);
+  return commentsFullDetail.map((comment) => {
+    const { id, author, created_utc, body } = comment;
+    return { id, author, created_utc, body };
+  });
+};
+
+export { fetchTopSubs, fetchPosts, fetchComments };
