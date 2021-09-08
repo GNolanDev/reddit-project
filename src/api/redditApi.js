@@ -35,8 +35,8 @@ const fetchPosts = async (sub_url) => {
     .map((child) => child.data)
     .slice(0, 50);
   return postsFullDetail.map((post) => {
-    const { author, title, url, id } = post;
-    return { author, title, url, id };
+    const { author, title, url, id, num_comments } = post;
+    return { author, title, url, id, num_comments };
   });
 };
 

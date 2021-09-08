@@ -28,6 +28,16 @@ const Post = (props) => {
     return <Comments comments={postprops.comments} />;
   };
 
+  const formattedNumComments = () => {
+    if (postprops.num_comments < 1000) {
+      return postprops.num_comments;
+    }
+    if (postprops.num_comments < 1000000) {
+      return `${(postprops.num_comments / 1000).toFixed(1)}k`;
+    }
+    return `${(postprops.num_comments / 1000000).toFixed(1)}M`;
+  };
+
   const handleCommentToggle = (e) => {
     //dispatch(flipCommentsStatus(postprops.id));
   };
@@ -41,7 +51,7 @@ const Post = (props) => {
       <div className="postinfo-container">
         <div className="postAuthor">{postprops.author}</div>
         <div className="commentinfo">
-          <div className="num-comments">{postprops.num_comments}</div>
+          <div className="num-comments">{formattedNumComments()}</div>
           <button
             className={`toggle-comments${
               postprops.showComment ? " commentbutton-active" : ""

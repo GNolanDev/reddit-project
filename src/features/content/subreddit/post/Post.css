@@ -22,14 +22,27 @@
 }
 
 .postinfo-container {
+  align-items: center;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
+.commentinfo {
+  align-items: center;
+  display: flex;
+  width: 6em;
+  justify-content: flex-end;
+}
+
 .toggle-comments img {
   height: 1.5em;
+  vertical-align: top;
   width: 1.5em;
+}
+
+.num-comments {
+  margin: 0 4px;
 }
 
 .toggle-comments {
