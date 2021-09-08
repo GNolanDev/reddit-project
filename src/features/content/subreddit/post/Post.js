@@ -1,13 +1,24 @@
 import "./Post.css";
 import commenticon from "../../../../assets/comment.png";
-import Comments from "../comments/Comments";
+import CommentList from "../comments/CommentList";
 //import { flipCommentsStatus } from "../subredditSlice";
 import { useDispatch } from "react-redux";
+import testdata from "../../../../test-utils/test-data";
 
 const Post = (props) => {
   const dispatch = useDispatch();
   const { postprops } = props;
   // postprops: id, title, author, url, num_comments, isLoading, error, comments, showCommment
+
+  // TODO: dev code - remove once slice logic is added
+  const conditionalCommentsRenderMock = () => {
+    return (
+      <CommentList
+        comments={testdata.comments1.map((comment) => comment.data)}
+      />
+    );
+  };
+
   const conditionalCommentsRender = () => {
     if (!postprops.showComment) {
       return;
@@ -25,7 +36,7 @@ const Post = (props) => {
       return <div className="msg-nocomment">no comments on this post yet</div>;
     }
 
-    return <Comments comments={postprops.comments} />;
+    return <CommentList comments={postprops.comments} />;
   };
 
   const formattedNumComments = () => {
@@ -50,7 +61,7 @@ const Post = (props) => {
       </div>
       <div className="postinfo-container">
         <div className="postAuthor">{postprops.author}</div>
-        <div className="commentinfo">
+        <div className="comments-info">
           <div className="num-comments">{formattedNumComments()}</div>
           <button
             className={`toggle-comments${
@@ -68,7 +79,7 @@ const Post = (props) => {
           </button>
         </div>
       </div>
-      {conditionalCommentsRender()}
+      {conditionalCommentsRenderMock()}
     </div>
   );
 };
