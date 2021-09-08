@@ -1,0 +1,22 @@
+.comments-container {
+  width: 100%;
+}
+
+.comment {
+  border: 1px solid lightpink;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  margin-top: 2px;
+}
+
+.comment-info {
+  box-shadow: 0 2px lightgray;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+.comment-body {
+  padding: 2px;
+}

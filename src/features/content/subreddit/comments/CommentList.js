@@ -1,4 +1,5 @@
 import timeAgo from "../../../../utilities/timeAgo";
+import "./CommentList.css";
 
 const CommentList = (props) => {
   const { comments } = props;
