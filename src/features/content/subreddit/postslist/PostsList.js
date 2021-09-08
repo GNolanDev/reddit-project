@@ -24,14 +24,7 @@ const PostsList = () => {
   return (
     <div className="postsList">
       {posts.map((post) => {
-        return (
-          <Post
-            key={post.id}
-            title={post.title}
-            author={post.author}
-            url={post.url}
-          />
-        );
+        return <Post postprops={post} key={post.id} />;
       })}
     </div>
   );
