@@ -45,6 +45,10 @@ const subredditSlice = createSlice({
     setSearchTerm(state, action) {
       state.searchTerm = action.payload;
     },
+    flipCommentsStatus(state, action) {
+      state.posts[action.payload].showComments =
+        !state.posts[action.payload].showComments;
+    },
   },
 });
 
@@ -82,6 +86,7 @@ export const {
   getCommentsFailure,
   setSelectedSubreddit,
   setSearchTerm,
+  flipCommentsStatus,
 } = subredditSlice.actions;
 export default subredditSlice.reducer;
 export const selectSubredditPosts = (state) => state.subreddit.posts;

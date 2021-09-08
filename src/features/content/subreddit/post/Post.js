@@ -1,7 +1,7 @@
 import "./Post.css";
 import commenticon from "../../../../assets/comment.png";
 import CommentList from "../comments/CommentList";
-//import { flipCommentsStatus } from "../subredditSlice";
+import { flipCommentsStatus } from "../subredditSlice";
 import { useDispatch } from "react-redux";
 import testdata from "../../../../test-utils/test-data";
 
@@ -50,7 +50,7 @@ const Post = (props) => {
   };
 
   const handleCommentToggle = (e) => {
-    //dispatch(flipCommentsStatus(postprops.id));
+    dispatch(flipCommentsStatus(postprops.id));
   };
 
   return (
