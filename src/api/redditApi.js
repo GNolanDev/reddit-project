@@ -43,9 +43,10 @@ const fetchPosts = async (sub_url) => {
       id,
       num_comments,
       permalink,
-      error: "false",
-      isLoading: "false",
-      showComments: "false",
+      error: false,
+      isLoading: false,
+      showComments: false,
+      comments: [],
     };
   });
 };

@@ -62,7 +62,10 @@
   -moz-appearance: none;
 }
 
-.toggle-comments:focus,
 .toggle-comments:focus-visible {
   border: 1px solid violet;
+}
+
+.commentbutton-active {
+  border: 2px solid lightskyblue;
 }

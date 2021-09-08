@@ -23,8 +23,8 @@ const PostsList = () => {
 
   return (
     <div className="postsList">
-      {posts.map((post) => {
-        return <Post postprops={post} key={post.id} />;
+      {posts.map((post, index) => {
+        return <Post postprops={post} key={post.id} index={index} />;
       })}
     </div>
   );

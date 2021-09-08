@@ -26,6 +26,7 @@ const posts1 = [
       url: "posturl0001",
       title: "title0001",
       permalink: "/r/testurl0001/comments/abcdef/foo",
+      num_comments: 999,
     },
   },
   {
@@ -35,6 +36,7 @@ const posts1 = [
       url: "posturl0002",
       title: "title0002",
       permalink: "/r/testurl0001/comments/abcdef/bar",
+      num_comments: 1100,
     },
   },
 ];
@@ -47,6 +49,7 @@ const posts2 = [
       url: "posturl0003",
       title: "title0003",
       permalink: "/r/testurl0002/comments/abcdef/foo",
+      num_comments: 5500,
     },
   },
   {
@@ -56,6 +59,7 @@ const posts2 = [
       url: "posturl0004",
       title: "title0004",
       permalink: "/r/testurl0002/comments/abcdef/bar",
+      num_comments: 1100000,
     },
   },
 ];

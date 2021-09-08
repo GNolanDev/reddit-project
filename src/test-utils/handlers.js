@@ -18,7 +18,8 @@ export const handlers = [
   }),
   // handle GET request to reddit for fetching posts from 1st subreddit
   rest.get(
-    new RegExp(`${base_url}${testdata.topsubs[0].data.url}`),
+    //new RegExp(`${base_url}${testdata.topsubs[0].data.url}`),
+    `${base_url}${testdata.topsubs[0].data.url}.json`,
     (req, res, ctx) => {
       return res(
         ctx.status(200),
@@ -32,7 +33,7 @@ export const handlers = [
   ),
   // handle request for 2nd subreddit
   rest.get(
-    new RegExp(`${base_url}${testdata.topsubs[1].data.url}`),
+    `${base_url}${testdata.topsubs[1].data.url}.json`,
     (req, res, ctx) => {
       return res(
         ctx.status(200),
@@ -46,17 +47,18 @@ export const handlers = [
   ),
   // handle request for comments for 1st subreddit
   rest.get(
-    new RegExp(`${base_url}${testdata.posts1[0].data.permalink}.json`),
+    `${base_url}${testdata.posts1[0].data.permalink}.json`,
     (req, res, ctx) => {
       return res(
         ctx.status(200),
-        ctx.json({
-          1: {
+        ctx.json([
+          { content: "no content" },
+          {
             data: {
               children: [...testdata.comments1],
             },
           },
-        })
+        ])
       );
     }
   ),

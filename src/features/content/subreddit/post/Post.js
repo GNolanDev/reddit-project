@@ -1,13 +1,14 @@
 import "./Post.css";
 import commenticon from "../../../../assets/comment.png";
 import CommentList from "../comments/CommentList";
-import { flipCommentsStatus } from "../subredditSlice";
+import { flipCommentsStatus, getComments } from "../subredditSlice";
 import { useDispatch } from "react-redux";
 import testdata from "../../../../test-utils/test-data";
+import { useEffect } from "react";
 
 const Post = (props) => {
   const dispatch = useDispatch();
-  const { postprops } = props;
+  const { postprops, index } = props;
   // postprops: id, title, author, url, num_comments, isLoading, error, comments, showCommment
 
   // TODO: dev code - remove once slice logic is added
@@ -18,6 +19,12 @@ const Post = (props) => {
       />
     );
   };
+
+  useEffect(() => {
+    if (postprops.showComments === true) {
+      dispatch(getComments(postprops.id));
+    }
+  }, [dispatch, postprops.showComments]);
 
   const conditionalCommentsRender = () => {
     if (!postprops.showComments) {
@@ -50,7 +57,7 @@ const Post = (props) => {
   };
 
   const handleCommentToggle = (e) => {
-    dispatch(flipCommentsStatus(postprops.id));
+    dispatch(flipCommentsStatus(index));
   };
 
   return (
@@ -65,7 +72,7 @@ const Post = (props) => {
           <div className="num-comments">{formattedNumComments()}</div>
           <button
             className={`toggle-comments${
-              postprops.showComment ? " commentbutton-active" : ""
+              postprops.showComments ? " commentbutton-active" : ""
             }`}
             onClick={handleCommentToggle}
           >
@@ -79,7 +86,7 @@ const Post = (props) => {
           </button>
         </div>
       </div>
-      {conditionalCommentsRenderMock()}
+      {conditionalCommentsRender()}
     </div>
   );
 };

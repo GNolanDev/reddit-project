@@ -65,15 +65,16 @@ export const getSubreddit = (sub_url) => async (dispatch) => {
 };
 
 export const getComments = (post_id) => async (dispatch, getState) => {
+  const thisPostIndex = getState().subreddit.posts.findIndex(
+    (post) => post.id === post_id
+  );
   try {
-    dispatch(startGettingComments(post_id));
-    const permalink = getState().subreddit.posts.find(
-      (post) => post.id === post_id
-    ).permalink;
+    const permalink = getState().subreddit.posts[thisPostIndex].permalink;
+    dispatch(startGettingComments(thisPostIndex));
     const comments = await fetchComments(permalink);
-    dispatch(getCommentsSuccess({ id: post_id, comments }));
+    dispatch(getCommentsSuccess({ id: thisPostIndex, comments }));
   } catch {
-    dispatch(getCommentsFailure(post_id));
+    dispatch(getCommentsFailure(thisPostIndex));
   }
 };
 

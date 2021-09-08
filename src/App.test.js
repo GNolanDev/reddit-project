@@ -99,12 +99,51 @@ describe("On clicking an expand comment button", () => {
   it("should display the comments for that post", async () => {
     render(<App />);
     await wait(200);
-    fireEvent.click(
-      screen.getAllByRole("button", { name: "toggle-comments" })[0]
-    );
+    fireEvent.click(screen.getAllByRole("button", { name: "Comments" })[0]);
     await wait(200);
-    const commentElement = await screen.getByText(/test comment 0001/i);
+    const commentElement = await screen.getByText(
+      testdata.comments1[0].data.body
+    );
     expect(commentElement).toBeInTheDocument();
+  });
+  it("should display an error message if 404 returned", async () => {
+    server.use(
+      rest.get(
+        `${base_url}${testdata.posts1[0].data.permalink}.json`,
+        (req, res, ctx) => {
+          return res(
+            ctx.status(404),
+            ctx.json({ message: "Not Found", error: "404" })
+          );
+        }
+      )
+    );
+    render(<App />);
+    await wait(200);
+    fireEvent.click(screen.getAllByRole("button", { name: "Comments" })[0]);
+    await wait(200);
+    const textElement = await screen.getByText(/could not find comments/i);
+    expect(textElement).toBeInTheDocument();
+  });
+  it("should display a waiting message if there's a delay", async () => {
+    server.use(
+      rest.get(
+        `${base_url}${testdata.posts1[0].data.permalink}.json`,
+        async (req, res, ctx) => {
+          await wait(4000);
+          return res(
+            ctx.status(404),
+            ctx.json({ message: "Not Found", error: "404" })
+          );
+        }
+      )
+    );
+    render(<App />);
+    await wait(200);
+    fireEvent.click(screen.getAllByRole("button", { name: "Comments" })[0]);
+    await wait(200);
+    const textElement = await screen.getByText(/loading comments/i);
+    expect(textElement).toBeInTheDocument();
   });
 });
 
