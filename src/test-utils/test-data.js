@@ -83,4 +83,6 @@ const comments1 = [
   },
 ];
 
-export default { topsubs, posts1, posts2, comments1 };
+const exportObj = { topsubs, posts1, posts2, comments1 };
+
+export default exportObj;

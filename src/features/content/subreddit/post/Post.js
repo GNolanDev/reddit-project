@@ -3,7 +3,6 @@ import commenticon from "../../../../assets/comment.png";
 import CommentList from "../comments/CommentList";
 import { flipCommentsStatus, getComments } from "../subredditSlice";
 import { useDispatch } from "react-redux";
-import testdata from "../../../../test-utils/test-data";
 import { useEffect } from "react";
 
 const Post = (props) => {
@@ -11,20 +10,11 @@ const Post = (props) => {
   const { postprops, index } = props;
   // postprops: id, title, author, url, num_comments, isLoading, error, comments, showCommment
 
-  // TODO: dev code - remove once slice logic is added
-  const conditionalCommentsRenderMock = () => {
-    return (
-      <CommentList
-        comments={testdata.comments1.map((comment) => comment.data)}
-      />
-    );
-  };
-
   useEffect(() => {
     if (postprops.showComments === true) {
       dispatch(getComments(postprops.id));
     }
-  }, [dispatch, postprops.showComments]);
+  }, [dispatch, postprops.showComments, postprops.id]);
 
   const conditionalCommentsRender = () => {
     if (!postprops.showComments) {
