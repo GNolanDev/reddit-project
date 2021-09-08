@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts } from "../../../api/redditApi";
+import { fetchPosts, fetchComments } from "../../../api/redditApi";
 
 const initialState = {
   posts: [],
@@ -26,6 +26,19 @@ const subredditSlice = createSlice({
       state.isLoading = false;
       state.error = true;
     },
+    startGettingComments(state, action) {
+      state.posts[action.payload].isLoading = true;
+      state.posts[action.payload].error = false;
+    },
+    getCommentsSuccess(state, action) {
+      state.posts[action.payload.id].isLoading = false;
+      state.posts[action.payload.id].error = false;
+      state.posts[action.payload.id].comments = action.payload.comments;
+    },
+    getCommentsFailure(state, action) {
+      state.posts[action.payload].isLoading = false;
+      state.posts[action.payload].error = true;
+    },
     setSelectedSubreddit(state, action) {
       state.selectedURL = action.payload;
     },
@@ -47,10 +60,26 @@ export const getSubreddit = (sub_url) => async (dispatch) => {
   }
 };
 
+export const getComments = (post_id) => async (dispatch, getState) => {
+  try {
+    dispatch(startGettingComments(post_id));
+    const permalink = getState().subreddit.posts.find(
+      (post) => post.id === post_id
+    ).permalink;
+    const comments = await fetchComments(permalink);
+    dispatch(getCommentsSuccess({ id: post_id, comments }));
+  } catch {
+    dispatch(getCommentsFailure(post_id));
+  }
+};
+
 export const {
   startGettingSubreddit,
   getSubredditSuccess,
   getSubredditFailure,
+  startGettingComments,
+  getCommentsSuccess,
+  getCommentsFailure,
   setSelectedSubreddit,
   setSearchTerm,
 } = subredditSlice.actions;

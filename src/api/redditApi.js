@@ -36,7 +36,17 @@ const fetchPosts = async (sub_url) => {
     .slice(0, 50);
   return postsFullDetail.map((post) => {
     const { author, title, url, id, num_comments, permalink } = post;
-    return { author, title, url, id, num_comments, permalink };
+    return {
+      author,
+      title,
+      url,
+      id,
+      num_comments,
+      permalink,
+      error: "false",
+      isLoading: "false",
+      showComments: "false",
+    };
   });
 };
 

@@ -20,7 +20,7 @@ const Post = (props) => {
   };
 
   const conditionalCommentsRender = () => {
-    if (!postprops.showComment) {
+    if (!postprops.showComments) {
       return;
     }
 
