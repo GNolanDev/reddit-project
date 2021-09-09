@@ -30,4 +30,6 @@ Created by GNolanDev@gmail.com - comments gratefully received!
 
 This application has all the functionality of the exemplar (as the 'voting' buttons don't actually do anything there except look nice!), has fairly comprehensive test coverage & so needs no further work.  It could be improved with styling for better aesthetics - for example by adding some transitions and 'ghost' templates while elements are loading. Other features (like working voting buttons, ability to add comments etc) could be added.
 
+See lighthouse report [here](https://github.com/GNolanDev/reddit-project/blob/main/LighthouseReport.PNG)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
