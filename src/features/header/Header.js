@@ -35,8 +35,9 @@ const Header = () => {
           onChange={handleChange}
           value={tempSearchTerm}
         />
-        <button type="submit" onClick={submitSearch}>
-          <img src={searchicon} alt="" />
+        <button type="submit" onClick={submitSearch} aria-label="Search">
+          <img src={searchicon} alt="" aria-hidden="true" focusable="false" />
+          <span className="visually-hidden">Search</span>
         </button>
       </form>
     </header>

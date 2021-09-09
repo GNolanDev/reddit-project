@@ -12,11 +12,16 @@
 
 .searchBar button {
   display: inline-flex;
+  margin-left: 8px;
 }
 
 .searchBar img {
-  height: 1em;
-  width: 1em;
+  height: 2em;
+  width: 2em;
+}
+
+.searchBar input {
+  font-size: 1em;
 }
 
 #headerlogo img {

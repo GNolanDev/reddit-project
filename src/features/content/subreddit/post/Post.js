@@ -65,6 +65,7 @@ const Post = (props) => {
               postprops.showComments ? " commentbutton-active" : ""
             }`}
             onClick={handleCommentToggle}
+            aria-label="Comments"
           >
             <img
               src={commenticon}
