@@ -7,7 +7,9 @@ To create a single page application which:
 - as a user will show me a list of subreddits as collected from the Reddit API
 - as a user will allow me to choose a subreddit & show me a list of posts from that subreddit
 - as a user will allow me to input a search term and display only those posts with the search term in them
-- as a user will show me the number of comments on each post and allow me to expand the comments section
+- as a user will show me the number of comments on each post and allow me to expand the comments section  
+
+See wireframes [here](https://github.com/GNolanDev/reddit-project/tree/main/wireframes)
 
 ## Requirements
 Hosted on [netlify](https://gnolandev-reddit-project.netlify.app/).
